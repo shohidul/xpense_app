@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpense App</title>
+
+    <!--load all Font Awesome styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body{
+            padding: 50px;
+        }
+
+        .blue-btn{
+            background: none;
+            border: none;
+            background-color: #2f80ed;
+            color: white;
+            font-weight: bold;
+            width: 80px;
+            height: 25px;
+            font-size: 12px;
+        }
+
+        .center-children{
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .w150{
+            width: 150px;
+        }
+
+        .lbl{
+            padding: 1px 4px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .mt50{
+            margin-top: 50px;
+        }
+
+        .data-row{
+            font-size: 18px;
+        }
+
+        .i-btn{
+            background: none;
+            border: none;
+            font-size: 20px;
+        }
+
+        .red{
+            color: red;
+        }
+
+        .text-center{
+            text-align: center;
+        }
+        .text-right{
+            text-align: right;
+        }
+
+        .data-btns{
+            width: 80px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: center;width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <h3 class="text-center">Expense App</h3>
+
+    <form action="" class="mt50 center-children">
+        <input type="text" class="w150" name="" id="" placeholder="Memo">
+        <input type="text" class="w150" name="" id="" placeholder="Amount">
+        <input type="submit" class="blue-btn" value="Add +">
+    </form>
+
+    <div class="mt50">
+        <div class="data-row center-children">
+            <p class="lbl w150">Donated</p>
+            <p class="lbl w150 text-right">100</p>
+            
+            <div class="data-btns">
+                <button class="i-btn"><i class="fa fa-edit"></i></button>
+                <button class="i-btn red"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt50">
+        <div class="data-row center-children">
+            <p class="lbl w150">Total</p>
+            <p class="lbl w150 text-right">630</p>
+            
+            <div class="data-btns">
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
