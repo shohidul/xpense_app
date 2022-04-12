@@ -96,28 +96,44 @@
         .hidden{
             visibility: hidden;
         }
+        .data-view{
+            max-height: 250px;
+            overflow-y: scroll;
+        }
     </style>
 </head>
 <body>
     <h3 class="text-center">Expense App</h3>
 
-    <form action="" class="mt50">
+    <form action="insert.php" method="post" class="mt50">
         <div class="center-children gap8">
-            <input type="text" class="w220" name="" id="" placeholder="Detail">
-            <input type="text" class="w80 text-right" name="" id="" placeholder="Amount">
+            <input type="text" class="w220" name="expense_head" id="" placeholder="Detail">
+            <input type="text" class="w80 text-right" name="expense_amt" id="" placeholder="Amount">
             <input type="submit" class="blue-btn" value="Add +">
         </div>
         <div class="center-children mt5">
-            <textarea name="" id="" cols="42" rows="2" placeholder="Note"></textarea>
+            <textarea name="expense_note" id="" cols="42" rows="2" placeholder="Note"></textarea>
             <input type="text" class="w80 hidden">
         </div>
     </form>
 
-    <div class="mt50">
+    <div class="mt50 data-view">
+        <?php
+            require_once 'db_conn.php';
+
+            $select_sql = "SELECT * from  expense_details ORDER BY expense_date DESC";
+            $result = $conn->query($select_sql);
+    
+            $totalAmt = 0;
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    $totalAmt += $row["expense_amt"];
+        ?>
         <div class="data-row">
             <div class="center-children gap8">
-                <p class="lbl w220">Donated</p>
-                <p class="lbl w80 text-right">100</p>
+                <p class="lbl w220"><?php echo $row["expense_head"]; ?></p>
+                <p class="lbl w80 text-right"><?php echo $row["expense_amt"]; ?></p>
 
                 <div class="data-btns">
                     <button class="i-btn"><i class="fa fa-edit"></i></button>
@@ -125,21 +141,31 @@
                 </div>
             </div>
             <div class="center-children gap8">
-                <p class="mt0 w315">Note</p>
+                <p class="mt0 w315"><?php echo $row["expense_note"]; ?></p>
                 <p class="mt0 w80 hidden">Note</p>
             </div>
         </div>
+        <?php
+                }
+            } else {
+                echo "0 results";
+            }
+
+            $conn->close();
+        ?>
     </div>
 
     <div class="mt50">
         <div class="data-row center-children">
             <p class="lbl w220">Total</p>
-            <p class="lbl w80 text-right">630</p>
+            <p class="lbl w80 text-right"><?php echo $totalAmt; ?></p>
             
             <div class="data-btns">
             </div>
         </div>
 
     </div>
+
+
 </body>
 </html>
