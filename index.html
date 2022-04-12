@@ -28,9 +28,15 @@
         .center-children{
             display: flex;
             justify-content: center;
+        }
+
+        .gap8{
             gap: 8px;
         }
 
+        .w315{
+            width: 315px;
+        }
         .w220{
             width: 220px;
         }
@@ -49,6 +55,14 @@
 
         .mt50{
             margin-top: 50px;
+        }
+
+        .mt5{
+            margin-top: 5px;
+        }
+
+        .mt0{
+            margin-top: 0;
         }
 
         .data-row{
@@ -79,25 +93,40 @@
             justify-content: center;width: 80px;
             background-color: #f5f5f5;
         }
+        .hidden{
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
     <h3 class="text-center">Expense App</h3>
 
-    <form action="" class="mt50 center-children">
-        <input type="text" class="w220" name="" id="" placeholder="Memo">
-        <input type="text" class="w80 text-right" name="" id="" placeholder="Amount">
-        <input type="submit" class="blue-btn" value="Add +">
+    <form action="" class="mt50">
+        <div class="center-children gap8">
+            <input type="text" class="w220" name="" id="" placeholder="Detail">
+            <input type="text" class="w80 text-right" name="" id="" placeholder="Amount">
+            <input type="submit" class="blue-btn" value="Add +">
+        </div>
+        <div class="center-children mt5">
+            <textarea name="" id="" cols="42" rows="2" placeholder="Note"></textarea>
+            <input type="text" class="w80 hidden">
+        </div>
     </form>
 
     <div class="mt50">
-        <div class="data-row center-children">
-            <p class="lbl w220">Donated</p>
-            <p class="lbl w80 text-right">100</p>
-            
-            <div class="data-btns">
-                <button class="i-btn"><i class="fa fa-edit"></i></button>
-                <button class="i-btn red"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <div class="data-row">
+            <div class="center-children gap8">
+                <p class="lbl w220">Donated</p>
+                <p class="lbl w80 text-right">100</p>
+
+                <div class="data-btns">
+                    <button class="i-btn"><i class="fa fa-edit"></i></button>
+                    <button class="i-btn red"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="center-children gap8">
+                <p class="mt0 w315">Note</p>
+                <p class="mt0 w80 hidden">Note</p>
             </div>
         </div>
     </div>
