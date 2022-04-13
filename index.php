@@ -8,7 +8,7 @@
 
     <!--load all Font Awesome styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <style>
         body{
             padding: 50px;
@@ -105,14 +105,15 @@
 <body>
     <h3 class="text-center">Expense App</h3>
 
-    <form action="insert.php" method="post" class="mt50">
+    <form action="insertUpdate.php" method="post" class="mt50">
         <div class="center-children gap8">
-            <input type="text" class="w220" name="expense_head" id="" placeholder="Detail">
-            <input type="text" class="w80 text-right" name="expense_amt" id="" placeholder="Amount">
-            <input type="submit" class="blue-btn" value="Add +">
+            <input type="hidden" id="id" name="id" value="">
+            <input type="text" class="w220" name="expense_head" id="expenseHead" placeholder="Detail">
+            <input type="text" class="w80 text-right" name="expense_amt" id="expenseAmt" placeholder="Amount">
+            <input type="submit" id="addBtn" class="blue-btn" value="Add +">
         </div>
         <div class="center-children mt5">
-            <textarea name="expense_note" id="" cols="42" rows="2" placeholder="Note"></textarea>
+            <textarea name="expense_note" id="expenseNote" cols="42" rows="2" placeholder="Note"></textarea>
             <input type="text" class="w80 hidden">
         </div>
     </form>
@@ -121,7 +122,7 @@
         <?php
             require_once 'db_conn.php';
 
-            $select_sql = "SELECT * from  expense_details ORDER BY expense_date DESC";
+            $select_sql = "SELECT * from  expense_details ORDER BY create_date DESC";
             $result = $conn->query($select_sql);
     
             $totalAmt = 0;
@@ -132,16 +133,20 @@
         ?>
         <div class="data-row">
             <div class="center-children gap8">
-                <p class="lbl w220"><?php echo $row["expense_head"]; ?></p>
-                <p class="lbl w80 text-right"><?php echo $row["expense_amt"]; ?></p>
+                <p class="lbl w220 expense-head"><?php echo $row["expense_head"]; ?></p>
+                <p class="lbl w80 text-right expense-amt"><?php echo $row["expense_amt"]; ?></p>
 
                 <div class="data-btns">
-                    <button class="i-btn"><i class="fa fa-edit"></i></button>
-                    <button class="i-btn red"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button class="i-btn edit-btn"><i class="fa fa-edit"></i></button>
+                    <form action="delete.php" method="post">
+                        <input type="hidden" name="id" class="id" value="<?php echo $row["id"]; ?>">
+                        <input type="submit" class="i-btn red" value="&#10008;">
+                        <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
+                    </form>
                 </div>
             </div>
             <div class="center-children gap8">
-                <p class="mt0 w315"><?php echo $row["expense_note"]; ?></p>
+                <p class="mt0 w315 expense-note"><?php echo $row["expense_note"]; ?></p>
                 <p class="mt0 w80 hidden">Note</p>
             </div>
         </div>
@@ -166,6 +171,19 @@
 
     </div>
 
+    <script>
+        $('.data-view').on('click', '.edit-btn', function(){
+            var id = $(this).closest( ".data-row" ).find(".id").val();
+            var expenseHead = $(this).closest( ".data-row" ).find(".expense-head").text();
+            var expenseAmt = $(this).closest( ".data-row" ).find(".expense-amt").text();
+            var expenseNote = $(this).closest( ".data-row" ).find(".expense-note").text();
 
+            $('#id').val(id);
+            $('#expenseHead').val(expenseHead);
+            $('#expenseAmt').val(expenseAmt);
+            $('#expenseNote').val(expenseNote);
+            $('#addBtn').val("Update");
+        });
+    </script>
 </body>
 </html>
