@@ -17,12 +17,19 @@
         .blue-btn{
             background: none;
             border: none;
-            background-color: #2f80ed;
+            background-color: #e1a900;
             color: white;
             font-weight: bold;
             width: 80px;
             height: 25px;
             font-size: 12px;
+            padding: 18px 20px;
+            line-height: 0%;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .blue-btn:hover{
+            box-shadow: 0px 5px 25px rgba(0,0,0,0.3);
         }
 
         .center-children{
@@ -34,23 +41,32 @@
             gap: 8px;
         }
 
-        .w315{
-            width: 315px;
+        .w348{
+            width: 348px;
         }
         .w220{
             width: 220px;
         }
-
+        .w155{
+            width: 155px;
+        }
 
         .w80{
             width: 80px;
         }
 
-        .lbl{
-            padding: 1px 4px;
+        .lbl {
+            padding: 2px 20px;
             margin-top: 5px;
             margin-bottom: 5px;
-            background-color: #f5f5f5;
+            background-color: #fff;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
+            line-height: 175%;
+            font-size: 18px;
+            height: 32px;
+        }
+        .lbl:hover{
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
         }
 
         .mt50{
@@ -97,8 +113,20 @@
             visibility: hidden;
         }
         .data-view{
-            max-height: 250px;
+            max-height: 350px;
             overflow-y: scroll;
+        }
+        input{
+            padding: 8px;
+            border: none;
+            border-bottom: 2px solid black;
+        }
+        textarea {
+            /* border: none; */
+            /* border-bottom: 1px solid black; */
+        }
+        .bg-tomato{
+            background-color: tomato;
         }
     </style>
 </head>
@@ -110,11 +138,12 @@
             <input type="hidden" id="id" name="id" value="">
             <input type="text" class="w220" name="expense_head" id="expenseHead" placeholder="Detail">
             <input type="text" class="w80 text-right" name="expense_amt" id="expenseAmt" placeholder="Amount">
-            <input type="submit" id="addBtn" class="blue-btn" value="Add +">
+            <input type="submit" id="addBtn" class="blue-btn" value="Save">
+            <input type="reset" class="blue-btn bg-tomato" value="Reset">
         </div>
         <div class="center-children mt5">
             <textarea name="expense_note" id="expenseNote" cols="42" rows="2" placeholder="Note"></textarea>
-            <input type="text" class="w80 hidden">
+            <input type="text" class="w155 hidden">
         </div>
     </form>
 
@@ -146,7 +175,7 @@
                 </div>
             </div>
             <div class="center-children gap8">
-                <p class="mt0 w315 expense-note"><?php echo $row["expense_note"]; ?></p>
+                <p class="mt0 w348 expense-note"><?php echo $row["expense_note"]; ?></p>
                 <p class="mt0 w80 hidden">Note</p>
             </div>
         </div>
@@ -161,7 +190,7 @@
     </div>
 
     <div class="mt50">
-        <div class="data-row center-children">
+        <div class="data-row center-children gap8">
             <p class="lbl w220">Total</p>
             <p class="lbl w80 text-right"><?php echo $totalAmt; ?></p>
             
